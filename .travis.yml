@@ -1,0 +1,23 @@
+sudo: required
+
+services:
+  - docker
+
+## Make sure all containers build without error.
+
+before_install:
+  - docker build -t nareal/docker_pelican .
+
+## Crude test, see if our container stays up after launch
+script:
+  - docker run -d --name pelican nareal/docker_pelican
+  - sleep 5 && docker ps | grep pelican
+  - docker rm -f $(docker ps -a -q)
+
+
+notifications:
+  email:
+    recipients:
+      - nareal@gmail.com
+    on_success: always
+    on_failure: always
