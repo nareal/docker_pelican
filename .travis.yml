@@ -10,7 +10,7 @@ before_install:
 
 ## Crude test, see if our container stays up after launch
 script:
-  - docker run -t -i nareal/docker_pelican /bin/bash
+  - docker run -d nareal/docker_pelican /bin/bash -c "while true; do echo hello world; sleep 1; done"
   - sleep 5 && docker ps | grep docker_pelican
   - docker rm -f $(docker ps -a -q)
 
