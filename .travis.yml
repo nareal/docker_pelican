@@ -11,7 +11,7 @@ before_install:
 ## Crude test, see if our container stays up after launch
 script:
   - docker run -d --name pelican nareal/docker_pelican
-  - sleep 5 && docker ps | grep nareal/docker_pelican
+  - sleep 5 && docker ps | grep docker_pelican
   - docker rm -f $(docker ps -a -q)
 
 
